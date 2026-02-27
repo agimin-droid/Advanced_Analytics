@@ -16,7 +16,7 @@ const navItems = [
   { name: "Univariate", icon: BarChart2, page: "Univariate", label: "Statistical Analysis" },
   { name: "Bivariate", icon: GitBranch, page: "Bivariate", label: "Correlation Analysis" },
   { name: "Preprocessing", icon: Sliders, page: "Preprocessing", label: "Transformations" },
-  { name: "2-Sample t-Test", icon: FlaskConical, page: "TTest", label: "t-Test & F-Test" },
+  { name: "2-Sample t-Test", icon: FlaskConical, page: "TwoSampleTTest", label: "t-Test & F-Test" },
 ];
 
 export default function Layout({ children, currentPageName }) {
