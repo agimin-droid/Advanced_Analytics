@@ -1,39 +1,72 @@
-**Welcome to your Base44 project** 
+# ChemometricSolutions - DEMO VERSION
 
-**About**
+[![Streamlit](https://img.shields.io/badge/streamlit-1.28+-FF4B4B.svg)](https://streamlit.io)
+[![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+> **7 core chemometric modules for multivariate data analysis**  
+> Workshop Como 2026 Edition
 
-This project contains everything you need to run your app locally.
+**Live Demo:** https://chemometricsolutions-demo.streamlit.app/  
+**Access:** Password-protected (credentials provided at workshop)
 
-**Edit the code in your local development environment**
+---
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+## Included Modules
 
-**Prerequisites:** 
+1. **Data Handling** - Import/export CSV, Excel, TXT formats
+2. **PCA Analysis** - Principal Component Analysis with diagnostics
+3. **Quality Control** - PCA Monitoring (T², Q statistics)
+4. **MLR & DoE** - Multiple Linear Regression & Design of Experiments
+5. **Univariate Analysis** - Statistical tests, distributions, outliers
+6. **Bivariate Analysis** - Correlation analysis
+7. **Preprocessing** - Data transformations and scaling
 
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
+---
+
+## Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/EFarinini/chemometricsolutions-demo.git
+cd chemometricsolutions-demo
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run application
+streamlit run streamlit_app.py
+```
+
+**Login:** Credentials provided at workshop
+
+---
+
+## Structure
 
 ```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
-
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
+chemometricsolutions-demo/
+├── 7 module files (data_handling.py, pca.py, etc.)
+├── Common utilities (color_utils.py, workspace_utils.py)
+├── Calculation engines (pca_utils/, mlr_utils/, etc.)
+└── Sample datasets (20+ real chemometric datasets)
 ```
 
-Run the app: `npm run dev`
+---
 
-**Publish your changes**
+## Full Version
 
-Open [Base44.com](http://Base44.com) and click on Publish.
+Includes **12+ advanced modules**: Multi-response DoE, Classification, PLS Calibration, GA Variable Selection, Mixture Design, and more.
 
-**Docs & Support**
+📧 **Contact:** chemometricsolutions@gmail.com  
+🌐 **Website:** https://chemometricsolutions.com
 
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
+---
 
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+## License
+
+MIT License - © 2026 Dr. Emanuele Farinini, PhD
+
+---
+
+**Demo Version - Workshop Como 2026**

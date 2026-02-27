@@ -1,0 +1,49 @@
+# ChemometricSolutions - Comprehensive Requirements
+# Complete interactive demos for chemometric analysis
+# Deployment on Streamlit Cloud (Python 3.13)
+
+# ===== CORE FRAMEWORK =====
+streamlit>=1.28.0              # Web app framework
+streamlit-aggrid>=0.3.0        # Advanced tables for data display
+streamlit-plotly-events>=0.0.6 # Interactive Plotly charts
+
+# ===== DATA MANIPULATION & ANALYSIS =====
+pandas>=1.5.0                  # Data structures and manipulation
+numpy>=1.23.0                  # Numerical computing
+scipy>=1.13.0                  # Scientific computing (latest for Python 3.13)
+
+# ===== VISUALIZATION =====
+plotly>=5.0.0                  # Interactive plots (main visualization library)
+plotly-express>=0.4.1          # High-level Plotly interface (usually with plotly)
+matplotlib>=3.5.0              # Static plotting (fallback/compatibility)
+seaborn>=0.11.0                # Statistical visualization
+python-ternary>=1.0.8          # Ternary contour plots for mixture designs
+
+# ===== MACHINE LEARNING & STATISTICS =====
+scikit-learn>=1.0.0            # ML algorithms (classification, preprocessing)
+statsmodels>=0.13.0            # Advanced statistical models
+
+# ===== DESIGN OF EXPERIMENTS & OPTIMIZATION =====
+pyDOE>=0.3.8                   # Design of Experiments (Plackett-Burman, Factorial, etc.)
+
+# ===== FILE HANDLING =====
+openpyxl>=3.0.9                # Excel file writing (.xlsx)
+xlrd>=2.0.1                    # Excel file reading (.xls, .xlsx legacy)
+
+# ===== MODEL PERSISTENCE =====
+joblib>=1.2.0                  # Model serialization and parallel computing
+
+# ===== DEVELOPMENT & DEBUGGING (Optional) =====
+# Uncomment for development:
+# pytest>=7.0.0                # Testing framework
+# black>=22.0.0                # Code formatting
+# flake8>=4.0.0                # Linting
+
+# ===== NOTES FOR STREAMLIT CLOUD =====
+# Python 3.13.9: scipy 1.10.x NOT compatible (requires Python <3.12)
+# Solution: Use scipy>=1.13.0 (latest compatible with Python 3.13)
+# 
+# GPy/gpyopt REMOVED: Not compatible with scipy 1.13.0+
+# These packages are outdated and have dependency conflicts with modern scipy
+# 
+# All other versions tested and compatible with Streamlit Cloud (Python 3.13)
