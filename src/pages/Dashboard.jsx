@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { base44 } from "@/api/base44Client";
 import {
-  Upload, TrendingUp, Activity, GitBranch, BarChart2, Sliders, TestTube,
-  ArrowRight, Database, FlaskConical, Lock, CheckCircle, Mail, Globe
+  Upload, TrendingUp, Activity, GitBranch, BarChart2, Sliders, FlaskConical,
+  ArrowRight, Database, Lock, CheckCircle, Mail, Globe
 } from "lucide-react";
 
 const MODULES = [
