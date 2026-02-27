@@ -4,7 +4,7 @@ import { createPageUrl } from "@/utils";
 import { base44 } from "@/api/base44Client";
 import {
   Database, Upload, TrendingUp, Activity, BarChart2, GitBranch,
-  Sliders, Shield, Menu, X, ChevronRight, LogOut, FlaskConical, TestTube
+  Sliders, Shield, Menu, X, ChevronRight, LogOut, FlaskConical
 } from "lucide-react";
 
 const navItems = [
@@ -16,7 +16,7 @@ const navItems = [
   { name: "Univariate", icon: BarChart2, page: "Univariate", label: "Statistical Analysis" },
   { name: "Bivariate", icon: GitBranch, page: "Bivariate", label: "Correlation Analysis" },
   { name: "Preprocessing", icon: Sliders, page: "Preprocessing", label: "Transformations" },
-  { name: "2-Sample T-Test", icon: TestTube, page: "TwoSampleTTest", label: "Two-Sample T-Test" },
+  { name: "2-Sample t-Test", icon: FlaskConical, page: "TTest", label: "t-Test & F-Test" },
 ];
 
 export default function Layout({ children, currentPageName }) {

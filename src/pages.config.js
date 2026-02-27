@@ -60,7 +60,7 @@ import QualityControl from './pages/QualityControl';
 import Univariate from './pages/Univariate';
 import Upload from './pages/Upload';
 import Visualize from './pages/Visualize';
-import TwoSampleTTest from './pages/TwoSampleTTest';
+import TTest from './pages/TTest';
 import __Layout from './Layout.jsx';
 
 
@@ -78,7 +78,7 @@ export const PAGES = {
     "Univariate": Univariate,
     "Upload": Upload,
     "Visualize": Visualize,
-    "TwoSampleTTest": TwoSampleTTest,
+    "TTest": TTest,
 }
 
 export const pagesConfig = {
