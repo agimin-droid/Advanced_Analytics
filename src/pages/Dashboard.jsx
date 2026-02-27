@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { base44 } from "@/api/base44Client";
 import {
-  Upload, TrendingUp, Activity, GitBranch, BarChart2, Sliders, FlaskConical,
-  ArrowRight, Database, Lock, CheckCircle, Mail, Globe
+  Upload, TrendingUp, Activity, GitBranch, BarChart2, Sliders,
+  ArrowRight, Database, FlaskConical, Lock, CheckCircle, Mail, Globe
 } from "lucide-react";
 
 const MODULES = [
@@ -15,7 +15,6 @@ const MODULES = [
   { icon: BarChart2, page: "Univariate", name: "Univariate Analysis", desc: "Statistical tests, distributions, outliers", available: true, color: "#06b6d4" },
   { icon: GitBranch, page: "Bivariate", name: "Bivariate Analysis", desc: "Correlation analysis & scatter plots", available: true, color: "#ec4899" },
   { icon: Sliders, page: "Preprocessing", name: "Preprocessing", desc: "SNV, derivatives, scaling, transformations", available: true, color: "#f97316" },
-  { icon: FlaskConical, page: "TwoSampleTTest", name: "2-Sample T-Test", desc: "Welch's t-test — Minitab-style output & graphs", available: true, color: "#84cc16" },
 ];
 
 const FULL_VERSION = [
@@ -73,7 +72,7 @@ export default function Dashboard() {
       {/* Demo info banner */}
       <div className="rounded-2xl p-5" style={{ background: "rgba(30,144,255,0.06)", border: "1px solid rgba(30,144,255,0.2)" }}>
         <div className="flex flex-wrap gap-3">
-          {["Data Handling & Import", "PCA Analysis", "Quality Control (PCA Monitoring)", "MLR & DoE (Single Response)", "Univariate Analysis", "Bivariate Analysis", "Preprocessing & Transformations", "Two-Sample T-Test (Welch's)"].map(m => (
+          {["Data Handling & Import", "PCA Analysis", "Quality Control (PCA Monitoring)", "MLR & DoE (Single Response)", "Univariate Analysis", "Bivariate Analysis", "Preprocessing & Transformations"].map(m => (
             <span key={m} className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full"
               style={{ background: "rgba(30,144,255,0.1)", color: "#4da3ff" }}>
               <CheckCircle size={11} /> {m}
