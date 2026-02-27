@@ -82,12 +82,22 @@ export default function Upload() {
 
     setProgress(50);
 
-    // Upload file
+    // Upload original file
     const { file_url } = await base44.integrations.Core.UploadFile({ file });
-    setProgress(75);
+    setProgress(65);
 
-    // Store preview (first 200 rows)
-    const preview = parsedData ? JSON.stringify(parsedData.slice(0, 200)) : null;
+    // Upload preview data (first 500 rows) as a separate JSON file
+    let preview_data_url = null;
+    if (parsedData && parsedData.length > 0) {
+      const previewBlob = new Blob(
+        [JSON.stringify(parsedData.slice(0, 500))],
+        { type: "application/json" }
+      );
+      const previewFile = new File([previewBlob], "preview.json", { type: "application/json" });
+      const { file_url: pUrl } = await base44.integrations.Core.UploadFile({ file: previewFile });
+      preview_data_url = pUrl;
+    }
+    setProgress(80);
 
     await base44.entities.Dataset.create({
       name: name.trim(),
@@ -99,7 +109,7 @@ export default function Upload() {
       row_count: parsedData?.length || null,
       column_count: columns.length || null,
       columns,
-      preview_data: preview,
+      preview_data: preview_data_url,
       status: "ready",
     });
 
