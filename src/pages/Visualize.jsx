@@ -33,7 +33,9 @@ export default function Visualize() {
     if (ds) {
       setDataset(ds);
       if (ds.preview_data) {
-        setParsedData(JSON.parse(ds.preview_data));
+        const res = await fetch(ds.preview_data);
+        const json = await res.json();
+        setParsedData(json);
       } else {
         setParsedData([]);
       }
