@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -12,9 +11,9 @@
   --bg-card-hover: #1a2135;
   --border: #1e2d4a;
   --border-light: #243555;
-  --accent: #6366f1;
-  --accent-light: #818cf8;
-  --accent-glow: rgba(99, 102, 241, 0.15);
+  --accent: #1E90FF;
+  --accent-light: #4da3ff;
+  --accent-glow: rgba(30, 144, 255, 0.15);
   --text-primary: #f0f4ff;
   --text-secondary: #8b9cbf;
   --text-muted: #4a5a7a;
