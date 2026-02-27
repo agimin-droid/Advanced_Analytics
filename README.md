@@ -1,4 +1,4 @@
-# ChemometricSolutions - DEMO VERSION
+
 
 [![Streamlit](https://img.shields.io/badge/streamlit-1.28+-FF4B4B.svg)](https://streamlit.io)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
@@ -70,3 +70,4 @@ MIT License - © 2026 Dr. Emanuele Farinini, PhD
 ---
 
 **Demo Version - Workshop Como 2026**
+
