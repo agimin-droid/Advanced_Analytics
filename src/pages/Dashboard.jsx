@@ -2,134 +2,149 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { base44 } from "@/api/base44Client";
-import { Database, Upload, BarChart3, Sparkles, ArrowRight, Clock, FileType, Rows } from "lucide-react";
-import StatCard from "../components/ui/StatCard";
+import {
+  Upload, TrendingUp, Activity, GitBranch, BarChart2, Sliders,
+  ArrowRight, Database, FlaskConical, Lock, CheckCircle, Mail, Globe
+} from "lucide-react";
 
-const FILE_TYPE_COLORS = {
-  csv: "#10b981", xlsx: "#6366f1", xls: "#6366f1",
-  json: "#f59e0b", txt: "#8b5cf6"
-};
+const MODULES = [
+  { icon: Upload, page: "DataHandling", name: "Data Handling", desc: "Import CSV, Excel, TXT datasets", available: true, color: "#1E90FF" },
+  { icon: TrendingUp, page: "PCA", name: "PCA Analysis", desc: "Principal Component Analysis (NIPALS)", available: true, color: "#10b981" },
+  { icon: Activity, page: "QualityControl", name: "Quality Control", desc: "PCA Monitoring — T² & Q statistics", available: true, color: "#f59e0b" },
+  { icon: GitBranch, page: "MLRDoE", name: "MLR & DoE", desc: "Multiple Linear Regression & Design of Experiments", available: true, color: "#8b5cf6" },
+  { icon: BarChart2, page: "Univariate", name: "Univariate Analysis", desc: "Statistical tests, distributions, outliers", available: true, color: "#06b6d4" },
+  { icon: GitBranch, page: "Bivariate", name: "Bivariate Analysis", desc: "Correlation analysis & scatter plots", available: true, color: "#ec4899" },
+  { icon: Sliders, page: "Preprocessing", name: "Preprocessing", desc: "SNV, derivatives, scaling, transformations", available: true, color: "#f97316" },
+];
+
+const FULL_VERSION = [
+  "Multi-Response DoE — Pareto Optimization",
+  "Classification — PLS-DA, LDA, QDA",
+  "PLS Calibration — Quantitative Analysis",
+  "GA Variable Selection",
+  "Mixture Design — Simplex DoE",
+  "Advanced Spectral Processing",
+];
 
 export default function Dashboard() {
   const [datasets, setDatasets] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    base44.entities.Dataset.list("-created_date", 20)
-      .then(setDatasets)
-      .finally(() => setLoading(false));
+    base44.entities.Dataset.list("-created_date", 5).then(setDatasets).catch(() => {});
   }, []);
 
-  const totalRows = datasets.reduce((s, d) => s + (d.row_count || 0), 0);
-
   return (
-    <div className="p-6 lg:p-8 space-y-8 animate-in">
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold mb-1" style={{ color: "var(--text-primary)", letterSpacing: "-0.03em" }}>
-          Welcome to <span className="gradient-text">DataLens</span>
-        </h1>
-        <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-          Advanced analytics platform — upload, explore, and unlock insights from your data.
-        </p>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard label="Datasets" value={datasets.length} icon={Database} color="#6366f1" />
-        <StatCard label="Total Rows" value={totalRows >= 1000 ? `${(totalRows/1000).toFixed(1)}K` : totalRows} icon={Rows} color="#10b981" />
-        <StatCard label="File Types" value={new Set(datasets.map(d => d.file_type)).size} icon={FileType} color="#f59e0b" />
-        <StatCard label="Ready" value={datasets.filter(d => d.status === "ready").length} sub="datasets processed" icon={BarChart3} color="#8b5cf6" />
-      </div>
-
-      {/* Quick actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {[
-          { title: "Upload Dataset", desc: "Import CSV, Excel, JSON, or TXT files", icon: Upload, page: "Upload", color: "#6366f1" },
-          { title: "Visualize Data", desc: "Build interactive charts and graphs", icon: BarChart3, page: "Visualize", color: "#8b5cf6" },
-          { title: "AI Insights", desc: "Get AI-powered analysis and summaries", icon: Sparkles, page: "Insights", color: "#06b6d4" },
-        ].map(({ title, desc, icon: Icon, page, color }) => (
-          <Link
-            key={page}
-            to={createPageUrl(page)}
-            className="glass-card p-5 flex items-start gap-4 group"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-              style={{ background: `${color}18`, border: `1px solid ${color}30` }}>
-              <Icon size={18} style={{ color }} />
-            </div>
-            <div className="flex-1">
-              <div className="font-semibold text-sm mb-0.5" style={{ color: "var(--text-primary)" }}>{title}</div>
-              <div className="text-xs" style={{ color: "var(--text-secondary)" }}>{desc}</div>
-            </div>
-            <ArrowRight size={16} className="mt-1 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color }} />
-          </Link>
-        ))}
-      </div>
-
-      {/* Recent datasets */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold" style={{ color: "var(--text-primary)" }}>Recent Datasets</h2>
-          <Link to={createPageUrl("Upload")} className="btn-secondary text-xs py-1.5 px-3" style={{ textDecoration: "none" }}>
-            Upload new
-          </Link>
+    <div className="p-6 lg:p-8 space-y-10 animate-in">
+      {/* Hero */}
+      <div className="text-center py-8">
+        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
+          style={{ background: "linear-gradient(135deg, #1E90FF, #2E5293)", boxShadow: "0 0 40px rgba(30,144,255,0.3)" }}>
+          <FlaskConical size={32} color="white" />
         </div>
+        <h1 className="text-4xl font-bold mb-2" style={{ letterSpacing: "-0.04em" }}>
+          <span style={{
+            background: "linear-gradient(45deg, #2E5293, #1E90FF, #4da3ff)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}>ChemometricSolutions</span>
+        </h1>
+        <p className="text-lg mb-1" style={{ color: "var(--text-secondary)" }}>DEMO VERSION — Workshop Como 2026</p>
+        <p className="text-sm max-w-xl mx-auto" style={{ color: "var(--text-muted)" }}>
+          7 core chemometric modules for multivariate data analysis. Upload your dataset and start exploring.
+        </p>
 
-        {loading ? (
-          <div className="space-y-3">
-            {[1,2,3].map(i => (
-              <div key={i} className="glass-card p-4 animate-pulse" style={{ height: 64 }} />
-            ))}
-          </div>
-        ) : datasets.length === 0 ? (
-          <div className="glass-card p-12 text-center">
-            <Database size={40} className="mx-auto mb-3" style={{ color: "var(--text-muted)" }} />
-            <p className="text-sm font-medium mb-1" style={{ color: "var(--text-secondary)" }}>No datasets yet</p>
-            <p className="text-xs mb-4" style={{ color: "var(--text-muted)" }}>Upload your first dataset to get started</p>
-            <Link to={createPageUrl("Upload")} className="btn-primary text-sm" style={{ textDecoration: "none", display: "inline-flex" }}>
-              <Upload size={14} /> Upload Dataset
-            </Link>
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {datasets.map(ds => (
-              <Link
-                key={ds.id}
-                to={`${createPageUrl("Explorer")}?id=${ds.id}`}
-                className="glass-card p-4 flex items-center gap-4 group"
-                style={{ textDecoration: "none" }}
-              >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold uppercase flex-shrink-0"
-                  style={{
-                    background: `${FILE_TYPE_COLORS[ds.file_type] || "#6366f1"}18`,
-                    color: FILE_TYPE_COLORS[ds.file_type] || "#6366f1",
-                    border: `1px solid ${FILE_TYPE_COLORS[ds.file_type] || "#6366f1"}30`
-                  }}>
-                  {ds.file_type}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="font-medium text-sm truncate" style={{ color: "var(--text-primary)" }}>{ds.name}</div>
-                  <div className="text-xs flex items-center gap-3 mt-0.5" style={{ color: "var(--text-muted)" }}>
-                    {ds.row_count && <span>{ds.row_count.toLocaleString()} rows</span>}
-                    {ds.column_count && <span>{ds.column_count} cols</span>}
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <span className={`tag ${ds.status === "ready" ? "tag-green" : ds.status === "error" ? "tag-red" : "tag-yellow"}`}>
-                    {ds.status}
-                  </span>
-                  <div className="flex items-center gap-1 text-xs" style={{ color: "var(--text-muted)" }}>
-                    <Clock size={11} />
-                    {new Date(ds.created_date).toLocaleDateString()}
-                  </div>
-                  <ArrowRight size={15} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--accent-light)" }} />
-                </div>
-              </Link>
-            ))}
+        {datasets.length === 0 && (
+          <Link to={createPageUrl("DataHandling")}
+            className="btn-primary mt-6 inline-flex"
+            style={{ textDecoration: "none", background: "linear-gradient(135deg, #1E90FF, #2E5293)" }}>
+            <Upload size={15} /> Import your data
+          </Link>
+        )}
+        {datasets.length > 0 && (
+          <div className="mt-6 flex items-center justify-center gap-2 text-sm" style={{ color: "#10b981" }}>
+            <CheckCircle size={16} />
+            {datasets.length} dataset{datasets.length > 1 ? "s" : ""} ready — select a module below
           </div>
         )}
+      </div>
+
+      {/* Demo info banner */}
+      <div className="rounded-2xl p-5" style={{ background: "rgba(30,144,255,0.06)", border: "1px solid rgba(30,144,255,0.2)" }}>
+        <div className="flex flex-wrap gap-3">
+          {["Data Handling & Import", "PCA Analysis", "Quality Control (PCA Monitoring)", "MLR & DoE (Single Response)", "Univariate Analysis", "Bivariate Analysis", "Preprocessing & Transformations"].map(m => (
+            <span key={m} className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full"
+              style={{ background: "rgba(30,144,255,0.1)", color: "#4da3ff" }}>
+              <CheckCircle size={11} /> {m}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Modules grid */}
+      <div>
+        <h2 className="text-lg font-semibold mb-4" style={{ color: "var(--text-primary)" }}>
+          🚀 Available Modules
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {MODULES.map(({ icon: Icon, page, name, desc, color }) => (
+            <Link
+              key={page}
+              to={createPageUrl(page)}
+              className="glass-card p-5 flex flex-col gap-3 group"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{ background: `${color}18`, border: `1px solid ${color}30` }}>
+                <Icon size={18} style={{ color }} />
+              </div>
+              <div>
+                <div className="font-semibold text-sm mb-0.5 flex items-center justify-between"
+                  style={{ color: "var(--text-primary)" }}>
+                  {name}
+                  <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color }} />
+                </div>
+                <div className="text-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>{desc}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Full version locked */}
+      <div>
+        <h2 className="text-lg font-semibold mb-4" style={{ color: "var(--text-primary)" }}>
+          🔒 Full Version Only
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {FULL_VERSION.map(m => (
+            <div key={m} className="glass-card p-4 flex items-center gap-3 opacity-50">
+              <Lock size={14} style={{ color: "var(--text-muted)" }} />
+              <span className="text-sm" style={{ color: "var(--text-secondary)" }}>{m}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Contact CTA */}
+      <div className="rounded-2xl p-8 text-center"
+        style={{ background: "linear-gradient(135deg, rgba(30,144,255,0.08) 0%, rgba(46,82,147,0.08) 100%)", border: "1px solid rgba(30,144,255,0.2)" }}>
+        <h3 className="text-lg font-bold mb-2" style={{ color: "#1E90FF" }}>Need the Full Version?</h3>
+        <p className="text-sm mb-4 max-w-md mx-auto" style={{ color: "var(--text-secondary)" }}>
+          12+ advanced modules including Multi-Response DoE, Classification, PLS Calibration, Genetic Algorithms, and Mixture Designs.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <a href="mailto:chemometricsolutions@gmail.com"
+            className="flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-xl"
+            style={{ background: "rgba(30,144,255,0.1)", color: "#4da3ff", textDecoration: "none", border: "1px solid rgba(30,144,255,0.2)" }}>
+            <Mail size={14} /> chemometricsolutions@gmail.com
+          </a>
+          <a href="https://chemometricsolutions.com" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-xl"
+            style={{ background: "rgba(30,144,255,0.1)", color: "#4da3ff", textDecoration: "none", border: "1px solid rgba(30,144,255,0.2)" }}>
+            <Globe size={14} /> chemometricsolutions.com
+          </a>
+        </div>
       </div>
     </div>
   );

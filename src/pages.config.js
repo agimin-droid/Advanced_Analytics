@@ -53,6 +53,13 @@ import Explorer from './pages/Explorer';
 import Visualize from './pages/Visualize';
 import Insights from './pages/Insights';
 import Admin from './pages/Admin';
+import DataHandling from './pages/DataHandling';
+import PCA from './pages/PCA';
+import QualityControl from './pages/QualityControl';
+import MLRDoE from './pages/MLRDoE';
+import Univariate from './pages/Univariate';
+import Bivariate from './pages/Bivariate';
+import Preprocessing from './pages/Preprocessing';
 import __Layout from './Layout.jsx';
 
 
@@ -63,6 +70,13 @@ export const PAGES = {
     "Visualize": Visualize,
     "Insights": Insights,
     "Admin": Admin,
+    "DataHandling": DataHandling,
+    "PCA": PCA,
+    "QualityControl": QualityControl,
+    "MLRDoE": MLRDoE,
+    "Univariate": Univariate,
+    "Bivariate": Bivariate,
+    "Preprocessing": Preprocessing,
 }
 
 export const pagesConfig = {
