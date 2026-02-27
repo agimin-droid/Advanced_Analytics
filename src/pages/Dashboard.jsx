@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { base44 } from "@/api/base44Client";
 import {
-  Upload, TrendingUp, Activity, GitBranch, BarChart2, Sliders,
+  Upload, TrendingUp, Activity, GitBranch, BarChart2, Sliders, TestTube,
   ArrowRight, Database, FlaskConical, Lock, CheckCircle, Mail, Globe
 } from "lucide-react";
 
@@ -15,6 +15,7 @@ const MODULES = [
   { icon: BarChart2, page: "Univariate", name: "Univariate Analysis", desc: "Statistical tests, distributions, outliers", available: true, color: "#06b6d4" },
   { icon: GitBranch, page: "Bivariate", name: "Bivariate Analysis", desc: "Correlation analysis & scatter plots", available: true, color: "#ec4899" },
   { icon: Sliders, page: "Preprocessing", name: "Preprocessing", desc: "SNV, derivatives, scaling, transformations", available: true, color: "#f97316" },
+  { icon: TestTube, page: "TwoSampleTTest", name: "2-Sample T-Test", desc: "Welch's t-test — Minitab-style output & graphs", available: true, color: "#84cc16" },
 ];
 
 const FULL_VERSION = [
