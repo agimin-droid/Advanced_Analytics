@@ -41,17 +41,14 @@ export default function Insights() {
   useEffect(() => {
     if (!selectedId) return;
     const ds = datasets.find(d => d.id === selectedId);
-    if (ds) {
-      setDataset(ds);
-      if (ds.preview_data) {
-        const res = await fetch(ds.preview_data);
-        const json = await res.json();
-        setParsedData(json);
-      } else {
-        setParsedData([]);
-      }
-      setMessages([]);
-      setAutoInsight(null);
+    if (!ds) return;
+    setDataset(ds);
+    setMessages([]);
+    setAutoInsight(null);
+    if (ds.preview_data) {
+      fetch(ds.preview_data).then(r => r.json()).then(setParsedData);
+    } else {
+      setParsedData([]);
     }
   }, [selectedId, datasets]);
 
